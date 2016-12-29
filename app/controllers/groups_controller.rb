@@ -39,7 +39,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    
+
     @group.destroy
     flash[:alert] = "Group deleted"
     redirect_to groups_path
@@ -55,9 +55,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  end
+
 
   def group_params
     params.require(:group).permit(:title, :description)
   end
+ 
 end
