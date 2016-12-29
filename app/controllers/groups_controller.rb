@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
   def index
     @groups = Group.all
-
   end
 
   def show
@@ -23,14 +23,13 @@ class GroupsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def update
     @group = Group.find(params[:id])
 
     if @group.update(group_params)
-      redirect_to groups_path, notice: "Update Success"
+      redirect_to groups_path, notice: 'Update Success'
     else
       render :edit
     end
@@ -39,7 +38,7 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    flash[:alert] = "Group deleted"
+    flash[:alert] = 'Group deleted'
     redirect_to groups_path
   end
 
@@ -48,5 +47,4 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:title, :description)
   end
-
 end
